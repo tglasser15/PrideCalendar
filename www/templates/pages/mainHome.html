@@ -1,0 +1,28 @@
+<ion-view view-title="Calendars" ng-controller="calendarController as calendarCtrl">
+    <ion-content class="calendar-page">
+        <div class="list card">
+            <div class="item item-avatar">
+                <h2>Welcome, {{user.name}}</h2>
+                <p>Here are some quick links to help you get started</p>
+            </div>
+            <div class="item item-body">
+                <div class="list card">
+                    <a ng-click="gamePopup()" class="item item-icon-left">
+                        <i class="icon ion-ios-plus"></i>
+                        Add a game
+                    </a>
+
+                    <a ng-click="playerPopup()" class="item item-icon-left">
+                        <i class="icon ion-ios-plus"></i>
+                        Add a player
+                    </a>
+
+                    <a ng-click="teamPopup()" class="item item-icon-left">
+                        <i class="icon ion-ios-plus"></i>
+                        Add a team
+                    </a>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

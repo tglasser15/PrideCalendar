@@ -1,0 +1,112 @@
+/* Login Page */
+.login-page {
+    width: 100%;
+    padding: 20% 30%;
+}
+
+/* Home page*/
+.home-page {
+    width: 100%;
+    padding: 5% 10%;
+}
+
+.row {
+    padding: 5px;
+    width: 100%;
+    border-radius: 2px;
+    text-align: center;
+
+}
+
+.col {
+    padding: 0;
+    border: 1px solid #ddd;
+    height: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+}
+
+.col.head {
+    padding: 10px;
+}
+
+.row.header {
+    font-weight: bold;
+}
+
+.row.bottom {
+    border-bottom: 1px solid #ddd;
+}
+
+.row.normal {
+    border-left: 1px solid #ddd;
+}
+
+.row.normal div.col {
+    text-align: left;
+    padding-top: 0;
+    padding-bottom: 60px;
+}
+
+.item-divider {
+    text-align: center;
+    font-size: x-large;
+}
+
+/* modal functionality*/
+.popup-container .popup.account, .popup-container .popup.team {
+    width: 600px;
+    z-index: 999;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.popup-title {
+    font-size: larger;
+}
+
+.popup-container .popup {
+    background-color: #dddddd;
+}
+
+/* Form validation fields*/
+.item-input input {
+    width: 95%;
+    background-color: 1px solid #DDD;
+}
+
+.item {
+    padding-bottom: 8px;
+}
+
+.item-select select {
+    padding-bottom: 13px;
+}
+
+.login-page .item.item-divider {
+    padding-left: 30%;
+    padding-right: 30%;
+}
+
+select.ng-invalid-required.ng-touched,
+input.ng-invalid-email.ng-touched,
+input.ng-invalid-required.ng-touched {
+    background-color: #FFE1E1;
+}
+
+.errorMsg {
+    color: red;
+    font-size: small;
+}
+
+.tabs {
+    position: relative;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabs-icon-left.tabs .tab-item, .tabs-icon-left > .tabs .tab-item, .tabs-icon-right.tabs .tab-item, .tabs-icon-right > .tabs .tab-item {
+    font-size: 18px;
+}
+
+

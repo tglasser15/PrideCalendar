@@ -1,0 +1,23 @@
+<ion-view view-title="Log In" ng-controller="loginController as loginCtrl">
+    <ion-content class="login-page">
+        <div class="card">
+            <div class="item item-divider">
+            </div>
+            <div class="item item-text-wrap">
+                <form name="loginForm" class="list list-inset login-form">
+                    <label class="item item-input">
+                        <span class="input-label">Email</span>
+                        <input type="text" ng-model="user.email" placeholder="Email" required>
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label">Password</span>
+                        <input type="password" ng-model="user.password" placeholder="Password" required>
+                    </label>
+                </form>
+            </div>
+            <div class="popup-buttons">
+                <button ng-click="login(user)" class="button button-positive">Log In</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
