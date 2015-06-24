@@ -7,7 +7,7 @@
 /* Home page*/
 .calendar-page {
     width: 100%;
-    padding: 2% 10%;
+    padding: 0% 10%;
 }
 
 .home-page {
@@ -23,6 +23,7 @@
     font-weight: normal;
 }
 
+
 .col {
     padding: 0;
     border: 1px solid #ddd;
@@ -33,14 +34,62 @@
     font-weight: bold;
 }
 
+.col.special {
+    border: none;
+}
+
+.col.special.one {
+    height: 150px;
+}
+
+.col.special.two, .col.special.three, .col.info1 {
+    height: 135px;
+    border: none;
+}
+
+.col.pdf {
+    height: 20px;
+}
+
+.col.pdf.blank {
+    border: none;
+}
+
+.col.pdf.blank.extend {
+    overflow: visible;
+    font-size: 80%;
+}
+
+.col.pdf.month {
+    background-color: #ddd;
+}
+
+.row.normal div.col.pdf {
+    padding-bottom: 0;
+}
+
 .col.head {
     background-color: #d3d3d3;
     height: 30px;
     border-bottom: 1px solid black;
 }
 
+.col.head.pdf {
+    background-color: #d3d3d3;
+    height: 20px;
+    border-bottom: none;
+}
+
+.col.head.info {
+    background-color: #fff;
+}
+
 .row.header {
     font-weight: bold;
+}
+
+.row.header.pdf, .row.normal.pdf {
+    width: 100%;
 }
 
 .row.bottom {
@@ -50,7 +99,11 @@
 .row.normal div.col {
     text-align: left;
     padding-top: 0;
-    padding-bottom: 60px;
+
+}
+
+.info {
+    text-align: left;
 }
 
 .item-divider {
@@ -68,14 +121,10 @@
     color: #0000ff;
 }
 
-/*.item.item-input.item-select.color {*/
-    /*height: 34px;*/
-/*}*/
-
-/*.item-select select {*/
-    /*padding: 0 35px 0 0;*/
-    /*max-width: none;*/
-/*}*/
+.popup-body.cv {
+    overflow: scroll;
+    height: 600px;
+}
 
 .icon.x {
     padding-top: 10px;
@@ -90,8 +139,14 @@
 }
 
 /* modal functionality*/
-.popup-container .popup.account, .popup-container .popup {
+.popup-container .popup.pdf, .popup-container .popup{
     width: 400px;
+    z-index: 999;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.popup-container .popup.pdf {
+    width: 600px;
     z-index: 999;
     background-color: rgba(255, 255, 255, 0.9);
 }
@@ -143,5 +198,6 @@ input.ng-invalid-required.ng-touched {
 .tab-item.header{
     max-width: none;
 }
+
 
 

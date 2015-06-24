@@ -1,0 +1,50 @@
+<div class="popup pdf">
+    <div class="popup-head">
+        <h3 class="popup-title">PDF Viewer</h3>
+    </div>
+    <div class="popup-body cv">
+        <div id="canvas" class="item item-text-wrap">
+
+            <div class="row special" ng-repeat="calendar in calendars track by $index">
+                <div class="col special one">
+                    <div class="row header pdf">
+                        <div class="col pdf blank"></div>
+                        <div class="col head pdf">Mon</div>
+                        <div class="col head pdf">Tue</div>
+                        <div class="col head pdf">Wed</div>
+                        <div class="col head pdf">Thu</div>
+                        <div class="col head pdf">Fri</div>
+                    </div>
+                    <div class ="row normal pdf" ng-repeat="i in [0,1,2,3,4] track by $index">
+                        <div ng-if="i == 0" class="col pdf month">
+                            {{calendar[0][0].title.substring(0,3)+'.'}}
+                        </div>
+                        <div ng-if="i != 0" class="col pdf blank"></div>
+                        <div ng-style="calendar[i][j].color" class="col pdf" ng-repeat="j in [0,1,2,3,4] track by $index" ng-click="dayEvent(calendar[i][j])">
+                            {{calendar[i][j].day}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col special two">
+                    <div class="row">
+                        <div class="col info1">
+                            <p class='info' ng-repeat="event in events.slice(0,5)">{{event.day + event.info}}</p>
+                        </div>
+                        <div class="col info1">
+                            <p class='info' ng-repeat="event in events.slice(6, events.length-1)">{{event.day + event.info}}</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="popup-buttons">
+        <button class="button button-positive" ng-click="getImage()">Get Image</button>
+        <button class="button button-light" ng-click="closeModal()">Exit</button>
+    </div>
+</div>
+
+
+

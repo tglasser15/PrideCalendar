@@ -11,7 +11,7 @@ calendar.controller('calendarController',
             // get calendar template
             // get months dictionary with month strings and indicies
             $scope.months = dataService.months;
-            $scope.init();
+            $scope.calendarInit();
         });
 
         $scope.$on(messageService.messages.viewCalendar, function(event, data) {
@@ -33,16 +33,33 @@ calendar.controller('calendarController',
         var calendarIndex = 0;
         var currentMonth = 7;     // calendar will start in August and end in july
 
-        //$scope.calendarInit = function() {
-        //    $scope.init();
-        //    while ((currentMonth + 1) != 7) {
-        //        calendarIndex = (calendarIndex + 1) % 12;
-        //        currentMonth = (currentMonth + 1) % 12;
-        //        $scope.init();
-        //    }
-        //    calendarIndex = 0;
-        //    currentMonth = 7;     // calendar will start in August and end in july
-        //};
+        $scope.calendarInit = function() {
+            //$scope.init();
+            while ((currentMonth + 1) != 7) {
+                $scope.init();
+                calendarIndex = (calendarIndex + 1) % 12;
+                currentMonth = (currentMonth + 1) % 12;
+            }
+            $scope.init();
+            calendarIndex = 0;
+            currentMonth = 7;     // calendar will start in August and end in july
+            $scope.currentMonth = 'August';
+            $scope.currentYear = $scope.schoolStartYear;
+            $scope.monthSwitch();
+        };
+
+        $scope.monthSwitch = function() {
+            $scope.calendar = $scope.yearlyCalendar[calendarIndex];
+            // get current, next and previous months
+            $scope.currentMonth = _.invert($scope.months)[currentMonth];
+            if ($scope.currentMonth === 'January')
+                $scope.currentYear = $scope.schoolEndYear;
+            if ($scope.currentMonth === 'December')
+                $scope.currentYear = $scope.schoolStartYear;
+
+            $scope.nextMonth = _.invert($scope.months)[(currentMonth+1)%12];
+            $scope.previousMonth = _.invert($scope.months)[mod(currentMonth - 1, 12)];
+        };
 
         $scope.init = function() {
             $scope.calendar = $scope.yearlyCalendar[calendarIndex];
@@ -178,13 +195,15 @@ calendar.controller('calendarController',
         $scope.next = function() {
             calendarIndex = (calendarIndex + 1) % 12;
             currentMonth = (currentMonth + 1) % 12;
-            $scope.init();
+            //$scope.init();
+            $scope.monthSwitch();
         };
 
         $scope.previous = function() {
             calendarIndex = (calendarIndex - 1) % 12;
             currentMonth = mod(currentMonth - 1, 12);
-            $scope.init();
+            //$scope.init();
+            $scope.monthSwitch();
         };
 
         function mod(n, m) {

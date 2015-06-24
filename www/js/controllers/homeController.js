@@ -34,7 +34,11 @@ calendar.controller('homeController',
         };
 
         $scope.viewPdf = function(index) {
-            console.log(index);
+            var calendarInfo = $scope.calendars[index].get("calendarInfo");
+            viewService.openModal('pdfViewer');
+            $timeout(function() {
+                $rootScope.$broadcast(messageService.messages.viewPdf, calendarInfo)
+            });
         };
 
         $scope.$on(messageService.messages.calendarAdd, function(event, data) {

@@ -25,7 +25,7 @@ calendar.directive('navBar', function ($location, $timeout, $rootScope, viewServ
                     '</label>' +
                     '<label class="item item-input item-stacked-label>"' +
                         '<span class="input-label"></span>' +
-                        '<input type="text" placeholder="2015" ng-bind="checkYear(data.startYear, error)" ng-model="data.startYear">' +
+                        '<input type="text" placeholder="2015" ng-bind="checkYear(data.startYear, error)" ng-model="data.startYear" required>' +
                     '</label>' +
                     '<h3 class="errorMsg" ng-if="error.status">{{error.msg}}</h3>' +
                     '</div>',
@@ -42,6 +42,7 @@ calendar.directive('navBar', function ($location, $timeout, $rootScope, viewServ
                             text: '<b>Go!</b>',
                             type: 'button-positive',
                             onTap: function (e) {
+                                $scope.checkYear($scope.data.startYear, $scope.error);
                                 if ($scope.error.status)
                                     e.preventDefault();
                                 else

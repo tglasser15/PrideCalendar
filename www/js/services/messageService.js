@@ -12,6 +12,7 @@ calendar.factory('messageService', function () {
             , createCalendar: 'createCalendar'
             , calendarAdd: 'calendarAdd'
             , viewCalendar: 'viewCalendar'
+            , viewPdf: 'viewPdf'
         }
 
         , toast: {

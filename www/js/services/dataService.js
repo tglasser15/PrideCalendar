@@ -53,6 +53,7 @@ calendar.factory('dataService', function ($location, $timeout, $rootScope, messa
             query.equalTo("objectId", id);
             return query.first();
         }
+
         , saveCalendar = function(calendar) {
             var newCalendar = new calendarTable();
             newCalendar.set("title", calendar.title);
@@ -60,17 +61,21 @@ calendar.factory('dataService', function ($location, $timeout, $rootScope, messa
             newCalendar.set("calendarInfo", calendar.info);
             return newCalendar.save();
         }
+
         , saveEditCalendar = function(parseCalendar, calendar) {
             parseCalendar.set("calendarInfo", calendar.info);
             return parseCalendar.save();
         }
+
         , getCalendars = function() {
             var query = new Parse.Query(calendarTable);
             return query.find();
         }
+
         , deleteCalendar = function(calendar) {
             return calendar.destroy();
         }
+
         , logIn = function(user) {
             return Parse.User.logIn(user.email, user.password);
         }
