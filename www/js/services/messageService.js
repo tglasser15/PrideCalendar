@@ -9,6 +9,9 @@ calendar.factory('messageService', function () {
             , closeModal: 'closeModal'
             , confirmPopup: 'confirmPopup'
             , popupMsg: 'popupMsg'
+            , createCalendar: 'createCalendar'
+            , calendarAdd: 'calendarAdd'
+            , viewCalendar: 'viewCalendar'
         }
 
         , toast: {
@@ -19,6 +22,8 @@ calendar.factory('messageService', function () {
                 return "Error: " + error.code + " " + error.message;
             }
             , missingFields: 'Please fill out all required fields'
+            , calendarSaved: 'You have successfully saved the calendar'
+            , calendarRemoved: 'Calendar has been removed, please wait for page to refresh'
         }
 
         , popup: {

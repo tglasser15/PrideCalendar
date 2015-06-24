@@ -92,5 +92,9 @@ calendar.controller('shellController',
             });
         });
 
+        //$scope.$on(messageService.messages.createCalendar, function(event, data) {
+        //    console.log(data);
+        //});
+
 
     });

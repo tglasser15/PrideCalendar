@@ -1,82 +1,19 @@
 <ion-view view-title="Home" ng-controller="homeController as homeCtrl">
     <ion-content class="home-page">
-        <div class="card">
+        <div class="list card">
             <div class="item item-divider">
-                January
+                Click a calendar to view
             </div>
-            <div class="item item-text-wrap">
-                <div class="row header">
-                    <div class="col head">Mon</div>
-                    <div class="col head">Tue</div>
-                    <div class="col head">Wed</div>
-                    <div class="col head">Thu</div>
-                    <div class="col head">Fri</div>
+            <a class="item item-icon-left" ng-repeat="calendar in calendars track by $index">
+                <i class="icon ion-calendar" ng-click="viewCalendar($index)" ></i>
+                <div class="viewCalendars">
+                    <button class="button button-energized" ng-click="viewPdf($index)">View PDF</button>
+                    <button class="button button-assertive" ng-click="removeCalendar($index)">Remove</button>
                 </div>
-                <div class="row normal">
-                    <div class="col">{{calendar[0][0].day}}
-                        <div class="row">
-                            hello
-                        </div>
-                        <div class="row">
-                            sdkflnasl;knfasnfansienfiasefnaisnefip
-                        </div>
-                        <div class="row">
-                            hello
-                        </div>
-                        <div class="row">
-                            hello
-                        </div>
-                        <div class="row">
-                            hello
-                        </div>
-                        <div class="row">
-                            sdkflnasl;knfasnfansienfiasefnaisnefip
-                        </div>
-                    </div>
-                    <div class="col">{{calendar[0][1]}}</div>
-                    <div class="col">{{calendar[0][2]}}</div>
-                    <div class="col">{{calendar[0][3]}}</div>
-                    <div class="col">{{calendar[0][4]}}</div>
-                </div>
-                <div class="row normal">
-                    <div class="col">{{calendar[1][0]}}</div>
-                    <div class="col">{{calendar[1][1]}}</div>
-                    <div class="col">{{calendar[1][2]}}</div>
-                    <div class="col">{{calendar[1][3]}}</div>
-                    <div class="col">{{calendar[1][4]}}</div>
-                </div>
-                <div class="row normal">
-                    <div class="col">{{calendar[2][0]}}</div>
-                    <div class="col">{{calendar[2][1]}}</div>
-                    <div class="col">{{calendar[2][2]}}</div>
-                    <div class="col">{{calendar[2][3]}}</div>
-                    <div class="col">{{calendar[2][4]}}</div>
-                </div>
-                <div class="row normal">
-                    <div class="col">{{calendar[3][0]}}</div>
-                    <div class="col">{{calendar[3][1]}}</div>
-                    <div class="col">{{calendar[3][2]}}</div>
-                    <div class="col">{{calendar[3][3]}}</div>
-                    <div class="col">{{calendar[3][4]}}</div>
-                </div>
-                <div class="row normal bottom">
-                    <div class="col">{{calendar[4][0]}}</div>
-                    <div class="col">{{calendar[4][1]}}</div>
-                    <div class="col">{{calendar[4][2]}}</div>
-                    <div class="col">{{calendar[4][3]}}</div>
-                    <div class="col">{{calendar[4][4]}}</div>
-                </div>
-            </div>
-            <div class="item tabs tabs-secondary tabs-icon-top">
-                <a class="tab-item" href="#">
-                    <i class="icon ion-arrow-left-c"></i>
-                    December
-                </a>
-                <a class="tab-item" href="#">
-                    <i class="icon ion-arrow-right-c"></i>
-                    January
-                </a>
-            </div>
+                {{calendar.get("title")}} <br>
+                {{calendar.get("calendarYear")}}
+
+            </a>
         </div>
 
     </ion-content>

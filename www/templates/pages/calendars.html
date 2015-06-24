@@ -1,27 +1,41 @@
 <ion-view view-title="Calendars" ng-controller="calendarController as calendarCtrl">
     <ion-content class="calendar-page">
-        <div class="list card">
-            <div class="item item-avatar">
-                <h2>Welcome, {{user.name}}</h2>
-                <p>Here are some quick links to help you get started</p>
-            </div>
-            <div class="item item-body">
-                <div class="list card">
-                    <a ng-click="gamePopup()" class="item item-icon-left">
-                        <i class="icon ion-ios-plus"></i>
-                        Add a game
-                    </a>
-
-                    <a ng-click="playerPopup()" class="item item-icon-left">
-                        <i class="icon ion-ios-plus"></i>
-                        Add a player
-                    </a>
-
-                    <a ng-click="teamPopup()" class="item item-icon-left">
-                        <i class="icon ion-ios-plus"></i>
-                        Add a team
-                    </a>
+        <div class="card">
+            <div class="item item-divider">
+                {{currentMonth + ' ' + currentYear}}
+                <div class="saveCalendar">
+                    <button class="button button-balanced" ng-click="saveCalendar()">Save Calendar</button>
                 </div>
+            </div>
+            <div class="item item-text-wrap">
+                <div class="row header">
+                    <div class="col head">Monday</div>
+                    <div class="col head">Tuesday</div>
+                    <div class="col head">Wednesday</div>
+                    <div class="col head">Thursday</div>
+                    <div class="col head">Friday</div>
+                </div>
+                <div class ="row normal" ng-repeat="i in [0,1,2,3,4] track by $index">
+                    <div ng-style="calendar[i][j].color" class="col" ng-repeat="j in [0,1,2,3,4] track by $index" ng-click="dayEvent(calendar[i][j])">
+                        {{calendar[i][j].day}}
+                        <div class="numEvents" ng-if="calendar[i][j].day">
+                            {{calendar[i][j].events.length ? '+' + calendar[i][j].events.length : ''}}
+                        </div>
+                        <div class="row" ng-repeat="event in calendar[i][j].events track by $index">
+                            {{event}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item tabs tabs-secondary tabs-icon-top">
+                <a class="tab-item" ng-click="previous()" ng-hide="previousMonth === 'July'">
+                    <i class="icon ion-arrow-left-c"></i>
+                    {{previousMonth}}
+                </a>
+                <a class="tab-item" ng-click="next()" ng-hide="nextMonth === 'August'">
+                    <i class="icon ion-arrow-right-c"></i>
+                    {{nextMonth}}
+                </a>
             </div>
         </div>
     </ion-content>

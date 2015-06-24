@@ -1,13 +1,12 @@
 <!-- menu -->
 <div class="tabs tabs-icon-left">
-    <a class="tab-item" ng-click="goToPage(&apos;/home&apos;)">
+    <a class="tab-item header" ng-click="goToPage(&apos;/home&apos;)">
         <i class="icon ion-home"></i> Home
     </a>
-    <a class="tab-item" ng-click="goToPage('/calendars')">
-        <i class="icon ion-calendar"></i> View Calendars
+    <a class="tab-item header" ng-click="openCalendar()">
+        <i class="icon ion-plus-round"></i> Create New Calendar
     </a>
-
-    <a class="tab-item" ng-click="logOut()">
+    <a class="tab-item header" ng-click="logOut()">
         <i class="icon ion-log-out"></i> Log Out
     </a>
 </div>

@@ -5,9 +5,14 @@
 }
 
 /* Home page*/
+.calendar-page {
+    width: 100%;
+    padding: 2% 10%;
+}
+
 .home-page {
     width: 100%;
-    padding: 5% 10%;
+    padding: 2% 10%;
 }
 
 .row {
@@ -15,7 +20,7 @@
     width: 100%;
     border-radius: 2px;
     text-align: center;
-
+    font-weight: normal;
 }
 
 .col {
@@ -25,11 +30,13 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-
+    font-weight: bold;
 }
 
 .col.head {
-    padding: 10px;
+    background-color: #d3d3d3;
+    height: 30px;
+    border-bottom: 1px solid black;
 }
 
 .row.header {
@@ -38,10 +45,6 @@
 
 .row.bottom {
     border-bottom: 1px solid #ddd;
-}
-
-.row.normal {
-    border-left: 1px solid #ddd;
 }
 
 .row.normal div.col {
@@ -55,19 +58,46 @@
     font-size: x-large;
 }
 
+.item-divider {
+    text-align: center;
+    font-size: x-large;
+}
+
+.numEvents {
+    float: right;
+    color: #0000ff;
+}
+
+/*.item.item-input.item-select.color {*/
+    /*height: 34px;*/
+/*}*/
+
+/*.item-select select {*/
+    /*padding: 0 35px 0 0;*/
+    /*max-width: none;*/
+/*}*/
+
+.icon.x {
+    padding-top: 10px;
+}
+
+.saveCalendar {
+    float: right;
+}
+
+.viewCalendars {
+    float: right;
+}
+
 /* modal functionality*/
-.popup-container .popup.account, .popup-container .popup.team {
-    width: 600px;
+.popup-container .popup.account, .popup-container .popup {
+    width: 400px;
     z-index: 999;
     background-color: rgba(255, 255, 255, 0.9);
 }
 
 .popup-title {
     font-size: larger;
-}
-
-.popup-container .popup {
-    background-color: #dddddd;
 }
 
 /* Form validation fields*/
@@ -80,14 +110,15 @@
     padding-bottom: 8px;
 }
 
-.item-select select {
-    padding-bottom: 13px;
+.calendar-page .item.item-divider {
+    padding-left: 130px;
 }
 
 .login-page .item.item-divider {
     padding-left: 30%;
     padding-right: 30%;
 }
+
 
 select.ng-invalid-required.ng-touched,
 input.ng-invalid-email.ng-touched,
@@ -96,8 +127,8 @@ input.ng-invalid-required.ng-touched {
 }
 
 .errorMsg {
-    color: red;
-    font-size: small;
+    color: #ef473a;
+    font-size: medium;
 }
 
 .tabs {
@@ -107,6 +138,10 @@ input.ng-invalid-required.ng-touched {
 
 .tabs-icon-left.tabs .tab-item, .tabs-icon-left > .tabs .tab-item, .tabs-icon-right.tabs .tab-item, .tabs-icon-right > .tabs .tab-item {
     font-size: 18px;
+}
+
+.tab-item.header{
+    max-width: none;
 }
 
 
