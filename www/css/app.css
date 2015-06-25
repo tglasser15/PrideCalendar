@@ -124,6 +124,7 @@
 .popup-body.cv {
     overflow: scroll;
     height: 600px;
+    background-color: #ffffff;
 }
 
 .icon.x {
@@ -197,6 +198,10 @@ input.ng-invalid-required.ng-touched {
 
 .tab-item.header{
     max-width: none;
+}
+
+#canvas {
+    background-color: #ffffff;
 }
 
 

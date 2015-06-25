@@ -3,7 +3,7 @@
         <h3 class="popup-title">PDF Viewer</h3>
     </div>
     <div class="popup-body cv">
-        <div id="canvas" class="item item-text-wrap">
+        <div id="canvas" class="item item-text-wrap canvas">
 
             <div class="row special" ng-repeat="calendar in calendars track by $index">
                 <div class="col special one">
@@ -17,7 +17,7 @@
                     </div>
                     <div class ="row normal pdf" ng-repeat="i in [0,1,2,3,4] track by $index">
                         <div ng-if="i == 0" class="col pdf month">
-                            {{calendar[0][0].title.substring(0,3)+'.'}}
+                            {{calendar.month}}
                         </div>
                         <div ng-if="i != 0" class="col pdf blank"></div>
                         <div ng-style="calendar[i][j].color" class="col pdf" ng-repeat="j in [0,1,2,3,4] track by $index" ng-click="dayEvent(calendar[i][j])">
@@ -28,10 +28,10 @@
                 <div class="col special two">
                     <div class="row">
                         <div class="col info1">
-                            <p class='info' ng-repeat="event in events.slice(0,5)">{{event.day + event.info}}</p>
+                            <p class='info' ng-repeat="event in calendar.events.slice(0,5)">{{event.day + event.info}}</p>
                         </div>
                         <div class="col info1">
-                            <p class='info' ng-repeat="event in events.slice(6, events.length-1)">{{event.day + event.info}}</p>
+                            <p class='info' ng-repeat="event in calendar.events.slice(5, calendar.events.length)">{{event.day + event.info}}</p>
                         </div>
                     </div>
 

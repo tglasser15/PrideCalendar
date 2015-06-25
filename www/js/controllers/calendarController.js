@@ -126,7 +126,9 @@ calendar.controller('calendarController',
 
             $scope.colors = dataService.colors;
 
-            if (!_.isEmpty(calendarDay)) {
+            console.log(calendarDay);
+
+            if (calendarDay.day) {
                 // An elaborate, custom popup
                 var myPopup = $ionicPopup.show({
                     template: '<div class="row" ng-repeat="event in events track by $index">' +
