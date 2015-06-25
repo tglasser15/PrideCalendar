@@ -6,21 +6,47 @@ calendar.directive('pdfViewer', function ($rootScope, $location, $timeout, viewS
         controller: function($scope, viewService) {
             var self = 'pdfViewer';
 
-            $scope.getImage = function() {
-                var myImage;
+            var myImage;
+            var doc = new jsPDF();
+            var i = 1;
+            var pos = 0;
 
-                html2canvas($('#canvas'), {
-                    onrendered: function(canvas) {
-                        myImage = canvas.toDataURL('image/png');
-                        window.open(myImage);
-                        var doc = new jsPDF();
-                        doc.addImage(myImage, 'PNG', 15, 40, 180, 180);
-                        doc.save('.pdf');
-                    },
-                    width: 1000,
-                    height: 1000
+            var pdf = function() {
+                doc.save('.pdf');
+            };
+
+            var renderImage = function() {
+                if (i == 13) {
+                    console.log('finished');
+                    pdf();
+                } else {
+                    html2canvas($('#' + i), {
+                        onrendered: function (canvas) {
+                            console.log(i);
+                            console.log(pos);
+                            myImage = canvas.toDataURL('image/png');
+                            doc.addImage(myImage, 'PNG', 0, pos, 0, 0);
+                        },
+                        width: 1000,
+                        height: 1000
+                    }).then(function (result) {
+                        i++;
+                        pos += 30;
+                        renderImage();
+                    });
+                }
+            };
+
+            $scope.getImage = function() {
+                var promise = new Promise(function(resolve, reject) {
+                    renderImage();
                 });
-                //
+
+                promise.then(function(result) {
+                    result.save('.pdf');
+                }, function(error) {
+                    console.log(error);
+                });
 
             };
 
@@ -53,6 +79,7 @@ calendar.directive('pdfViewer', function ($rootScope, $location, $timeout, viewS
                 _.each($scope.calendars, function(calendar) {
                     $scope.getEvents(calendar);
                     calendar.month = $scope.months[i++];
+                    calendar.id = i;
                 });
             });
 

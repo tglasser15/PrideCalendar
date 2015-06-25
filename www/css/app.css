@@ -23,6 +23,9 @@
     font-weight: normal;
 }
 
+.row.special {
+    height: 125px;
+}
 
 .col {
     padding: 0;
@@ -39,12 +42,13 @@
 }
 
 .col.special.one {
-    height: 150px;
+    height: 135px;
 }
 
 .col.special.two, .col.special.three, .col.info1 {
     height: 135px;
     border: none;
+    padding-top: 10px;
 }
 
 .col.pdf {
@@ -99,7 +103,6 @@
 .row.normal div.col {
     text-align: left;
     padding-top: 0;
-
 }
 
 .info {
@@ -122,7 +125,7 @@
 }
 
 .popup-body.cv {
-    overflow: scroll;
+    /*overflow: scroll;*/
     height: 600px;
     background-color: #ffffff;
 }
