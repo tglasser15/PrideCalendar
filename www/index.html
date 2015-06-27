@@ -14,6 +14,29 @@
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
+    <!--  pdf libraries-->
+    <script type="text/javascript" src="lib/html2canvas.js"></script>
+    <script type="text/javascript" src="lib/jsPDF/jspdf.js"></script>
+    <script type="text/javascript" src="lib/jsPDF/libs/FileSaver.js/FileSaver.js"></script>
+    <script type="text/javascript" src="lib/jsPDF/libs/Blob.js/Blob.js"></script>
+    <script type="text/javascript" src="lib/jsPDF/libs/Blob.js/BlobBuilder.js"></script>
+
+    <script type="text/javascript" src="lib/jsPDF/libs/Deflate/deflate.js"></script>
+    <script type="text/javascript" src="lib/jsPDF/libs/Deflate/adler32cs.js"></script>
+
+    <script type="text/javascript" src="lib/jsPDF/jspdf.plugin.addimage.js"></script>
+    <script type="text/javascript" src="lib/jsPDF/jspdf.plugin.from_html.js"></script>
+    <script type="text/javascript" src="lib/jsPDF/jspdf.plugin.ie_below_9_shim.js"></script>
+    <script type="text/javascript" src="lib/jsPDF/jspdf.plugin.sillysvgrenderer.js"></script>
+    <script type="text/javascript" src="lib/jsPDF/jspdf.plugin.split_text_to_size.js"></script>
+    <script type="text/javascript" src="lib/jsPDF/jspdf.plugin.standard_fonts_metrics.js"></script>
+
+    <script type="text/javascript" src="lib/jsPDF/jsPDF/libs/png_support/zlib.js"></script>
+    <script type="text/javascript" src="lib/jsPDF/jsPDF/libs/png_support/png.js"></script>
+    <script type="text/javascript" src="lib/jsPDF/jsPDF/plugins/addimage.js"></script>
+    <script type="text/javascript" src="lib/jsPDF/jsPDF/plugins/png_support.js"></script>
+    <script type="text/javascript" src="lib/jsPDF/jsPDF/plugins/addhtml.js"></script>
+
   </head>
 
   <body ng-app="calendar" ng-controller="shellController as shellCtrl">
@@ -79,27 +102,7 @@
     <script src="js/directives/navBar.js"></script>
     <script src="js/directives/pdfViewer.js"></script>
 
-    <!--  pdf libraries-->
-    <script type="text/javascript" src="lib/html2canvas.js"></script>
-    <script type="text/javascript" src="lib/jsPDF/jspdf.js"></script>
-    <script type="text/javascript" src="lib/jsPDF/libs/FileSaver.js/FileSaver.js"></script>
-    <script type="text/javascript" src="lib/jsPDF/libs/Blob.js/Blob.js"></script>
-    <script type="text/javascript" src="lib/jsPDF/libs/Blob.js/BlobBuilder.js"></script>
 
-    <script type="text/javascript" src="lib/jsPDF/libs/Deflate/deflate.js"></script>
-    <script type="text/javascript" src="lib/jsPDF/libs/Deflate/adler32cs.js"></script>
-
-    <script type="text/javascript" src="lib/jsPDF/jspdf.plugin.addimage.js"></script>
-    <script type="text/javascript" src="lib/jsPDF/jspdf.plugin.from_html.js"></script>
-    <script type="text/javascript" src="lib/jsPDF/jspdf.plugin.ie_below_9_shim.js"></script>
-    <script type="text/javascript" src="lib/jsPDF/jspdf.plugin.sillysvgrenderer.js"></script>
-    <script type="text/javascript" src="lib/jsPDF/jspdf.plugin.split_text_to_size.js"></script>
-    <script type="text/javascript" src="lib/jsPDF/jspdf.plugin.standard_fonts_metrics.js"></script>
-
-    <script type="text/javascript" src="lib/jsPDF/jsPDF/libs/png_support/zlib.js"></script>
-    <script type="text/javascript" src="lib/jsPDF/jsPDF/libs/png_support/png.js"></script>
-    <script type="text/javascript" src="lib/jsPDF/jsPDF/plugins/addimage.js"></script>
-    <script type="text/javascript" src="lib/jsPDF/jsPDF/plugins/png_support.js"></script>
 
 
   </body>

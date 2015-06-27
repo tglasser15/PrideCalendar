@@ -1,0 +1,17 @@
+{
+  "global": {
+    "parseVersion": "1.4.2"
+  },
+  "applications": {
+    "PrideCalendar": {
+      "applicationId": "hcFUUkOyq0qcwjso9eOI9XBNbzNsVd2CClKjMCzU",
+      "masterKey": "PNeFPrjZ8xEAcL0R4cAW5XHnrUWIWq75mLmj7bMh"
+    },
+    "_default": {
+      "link": "PrideCalendar"
+    },
+    "cloudCode": {
+      "link": "PrideCalendar"
+    }
+  }
+}

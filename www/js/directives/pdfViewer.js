@@ -7,47 +7,46 @@ calendar.directive('pdfViewer', function ($rootScope, $location, $timeout, viewS
             var self = 'pdfViewer';
 
             var myImage;
-            var doc = new jsPDF();
+            var pdf = new jsPDF();
             var i = 1;
-            var pos = 0;
-
-            var pdf = function() {
-                doc.save('.pdf');
-            };
+            var x = 0;
+            var y = 0;
 
             var renderImage = function() {
+
                 if (i == 13) {
-                    console.log('finished');
-                    pdf();
+                    console.log(pdf);
+                    pdf.save($scope.title);
+
                 } else {
-                    html2canvas($('#' + i), {
-                        onrendered: function (canvas) {
-                            console.log(i);
-                            console.log(pos);
-                            myImage = canvas.toDataURL('image/png');
-                            doc.addImage(myImage, 'PNG', 0, pos, 0, 0);
-                        },
-                        width: 1000,
-                        height: 1000
-                    }).then(function (result) {
-                        i++;
-                        pos += 30;
-                        renderImage();
-                    });
+                    $('#' + (i - 1)).remove();
+                    //$timeout(function() {
+                        html2canvas($('#' + i), {
+                            onrendered: function (canvas) {
+                                i++;
+                                myImage = canvas.toDataURL('image/png');
+                                pdf.addImage(myImage, 'png', 0, y, 170, 0);
+                                y += 22.5;
+                                renderImage();
+                            },
+                            width: 800,
+                            height: 200
+                        });
+                    //}, 1000);
                 }
             };
 
             $scope.getImage = function() {
-                var promise = new Promise(function(resolve, reject) {
-                    renderImage();
+                html2canvas($('#t'), {
+                    onrendered: function (canvas) {
+                        myImage = canvas.toDataURL('image/png');
+                        pdf.addImage(myImage, 'png', 0, y, 200, 0);
+                        y += 9;
+                        renderImage();
+                    },
+                    width: 800,
+                    height: 200
                 });
-
-                promise.then(function(result) {
-                    result.save('.pdf');
-                }, function(error) {
-                    console.log(error);
-                });
-
             };
 
             $scope.getEvents = function(calendar) {
@@ -74,7 +73,8 @@ calendar.directive('pdfViewer', function ($rootScope, $location, $timeout, viewS
             };
 
             $scope.$on(messageService.messages.viewPdf, function(event, data) {
-                $scope.calendars = data;
+                $scope.calendars = data.calendarInfo;
+                $scope.title = data.calendarYear + ': ' + data.title;
                 var i = 0;
                 _.each($scope.calendars, function(calendar) {
                     $scope.getEvents(calendar);

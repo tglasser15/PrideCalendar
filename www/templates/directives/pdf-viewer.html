@@ -1,11 +1,12 @@
 <div class="popup pdf">
     <div class="popup-head">
-        <h3 class="popup-title">PDF Viewer</h3>
+        <h3 class="popup-title">PDF Preview</h3>
     </div>
-    <div class="popup-body cv">
+    <div id="canvas" class="popup-body cv">
         <div class="item item-text-wrap">
+            <h1 id="t" class="title pdf">{{title}}</h1>
             <div id="{{calendar.id}}" class="row special" ng-repeat="calendar in calendars track by $index">
-                <div class="col special one">
+                <div class="col-33 special one">
                     <div class="row header pdf">
                         <div class="col pdf blank"></div>
                         <div class="col head pdf" ng-if="$index == 0">Mon</div>
