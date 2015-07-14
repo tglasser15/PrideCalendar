@@ -28,8 +28,10 @@ calendar.factory('dataService', function ($location, $timeout, $rootScope, messa
                 Sage: '#9c9c3a',
                 "Robin's Egg": '#7bced2',
                 Abalone: '#79a361',
-                Aqua: '#6ba7afe',
-                Moss: '#9ba765'
+                Aqua: '#00ffff',
+                Moss: '#9ba765',
+                Yellow: '#ffff00',
+                Corn: '#FBEC5D'
         }
 
         , months = {

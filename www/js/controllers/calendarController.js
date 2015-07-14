@@ -2,7 +2,16 @@ calendar.controller('calendarController',
     function calendarController($scope, $rootScope, viewService, toastService, dataService, messageService, $timeout, $ionicPopup) {
         var self = this;
 
+        var date = new Date();          // create date object
+        var calendarIndex = 0;
+        var currentMonth = 7;     // calendar will start in August and end in july
+
+        $scope.currentMonth = '';
+        $scope.currentYear = '';
+
+
         $scope.$on(messageService.messages.createCalendar, function(event, data) {
+            $scope.calendarId = '';
             $scope.title = data.title;
             $scope.schoolStartYear = data.startYear;
             $scope.schoolEndYear = ++data.startYear;
@@ -11,6 +20,11 @@ calendar.controller('calendarController',
             // get calendar template
             // get months dictionary with month strings and indicies
             $scope.months = dataService.months;
+
+            $scope.currentMonth = '';
+            calendarIndex = 0;
+            currentMonth = 7;     // calendar will start in August and end in july
+
             $scope.calendarInit();
         });
 
@@ -22,16 +36,15 @@ calendar.controller('calendarController',
             $scope.currentYear = $scope.schoolStartYear;
             $scope.yearlyCalendar = data.get("calendarInfo");
             $scope.months = dataService.months;
+
+            calendarIndex = 0;
+            currentMonth = 7;     // calendar will start in August and end in july
+
+
             $scope.init();
         });
 
-        // initialize current month and current year
-        $scope.currentMonth = '';
-        $scope.currentYear = '';
 
-        var date = new Date();          // create date object
-        var calendarIndex = 0;
-        var currentMonth = 7;     // calendar will start in August and end in july
 
         $scope.calendarInit = function() {
             //$scope.init();
@@ -66,6 +79,7 @@ calendar.controller('calendarController',
 
             // get current, next and previous months
             $scope.currentMonth = _.invert($scope.months)[currentMonth];
+            //console.log($scope.currentMonth);
             if ($scope.currentMonth === 'January')
                 $scope.currentYear = $scope.schoolEndYear;
             if ($scope.currentMonth === 'December')
@@ -114,19 +128,34 @@ calendar.controller('calendarController',
         };
 
         $scope.dayEvent = function(calendarDay) {
+
             if(!calendarDay.events)
                 calendarDay.events = [];
             if(!calendarDay.color)
-                calendarDay.color = {};
+                calendarDay.color = '';
+            //else
+            //    $scope.color = (_.invert($scope.colors))[calendarDay.color];
+            if(!calendarDay.textColor) {
+                calendarDay.textColor = '#000000';
+            }
+
+            console.log(calendarDay.textColor);
+
+            if (calendarDay.textColor === '#000000') {
+                $scope.isChecked = 'No';
+            } else {
+                $scope.isChecked = 'Yes';
+            }
+
 
             $scope.events = calendarDay.events;
             $scope.dayColor = [];
 
+
+
             //$scope.colors = ['White', 'Blue', 'Green', 'Yellow', 'Red', 'Brown'];
 
             $scope.colors = dataService.colors;
-
-            console.log(calendarDay);
 
             if (calendarDay.day) {
                 // An elaborate, custom popup
@@ -143,7 +172,8 @@ calendar.controller('calendarController',
                     '<select ng-model="color" ng-change="changeColor(dayColor, color)" ng-options="k for (k, v) in colors">' +
                     '</select>' +
                     '</label>' +
-                    '</div>',
+                    '</div>' +
+                    '<ion-checkbox ng-model="isChecked" ng-true-value="\'Yes\'" ng-false-value="\'No\'" ng-change="checkFed(isChecked)">Federal Holiday</ion-checkbox>',
                     title: calendarDay.title,
                     subTitle: 'Here are the events',
                     scope: $scope,
@@ -173,9 +203,17 @@ calendar.controller('calendarController',
                     ]
                 });
                 myPopup.then(function (res) {
+                    console.log(res);
+                    if ($scope.isChecked === 'Yes') {
+                        calendarDay.textColor = '#ff0000';
+                    } else {
+                        $scope.isChecked = 'No';
+                        calendarDay.textColor = '#000000';
+                    }
+
                     calendarDay.events = _.without(calendarDay.events, "");
                     if(!_.isEmpty(res)) {
-                        calendarDay.color = {'background-color': res[0]};
+                        calendarDay.color = res[0];
                     }
                 });
             }
@@ -192,6 +230,10 @@ calendar.controller('calendarController',
         $scope.changeColor = function(dayColor, selectedColor) {
             dayColor.push(selectedColor);
             return dayColor;
+        };
+
+        $scope.checkFed = function(flag) {
+            $scope.isChecked = flag;
         };
 
         $scope.next = function() {
@@ -213,6 +255,7 @@ calendar.controller('calendarController',
         }
 
         $scope.saveCalendar = function() {
+            console.log($scope.calendarId);
             var calendar = {
                 id: $scope.calendarId ? $scope.calendarId : '',
                 title: $scope.title,

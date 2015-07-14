@@ -16,7 +16,7 @@
                     <div class="col head">Friday</div>
                 </div>
                 <div class ="row normal" ng-repeat="i in [0,1,2,3,4] track by $index">
-                    <div ng-style="calendar[i][j].color" class="col" ng-repeat="j in [0,1,2,3,4] track by $index" ng-click="dayEvent(calendar[i][j])">
+                    <div ng-style="{background: calendar[i][j].color, color: calendar[i][j].textColor }" class="col" ng-repeat="j in [0,1,2,3,4] track by $index" ng-click="dayEvent(calendar[i][j])">
                         {{calendar[i][j].day}}
                         <div class="numEvents" ng-if="calendar[i][j].day">
                             {{calendar[i][j].events.length ? '+' + calendar[i][j].events.length : ''}}

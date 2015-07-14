@@ -15,9 +15,9 @@ calendar.directive('pdfViewer', function ($rootScope, $location, $timeout, viewS
             var renderImage = function() {
 
                 if (i == 13) {
-                    console.log(pdf);
+                    //console.log(pdf);
                     pdf.save($scope.title);
-
+                    sendEmail();
                 } else {
                     $('#' + (i - 1)).remove();
                     //$timeout(function() {
@@ -46,6 +46,20 @@ calendar.directive('pdfViewer', function ($rootScope, $location, $timeout, viewS
                     },
                     width: 800,
                     height: 200
+                });
+            };
+
+            var sendEmail = function() {
+
+
+                Parse.Cloud.run('sendEmail', { pdf: 'hello'}, {
+                    success: function(result) {
+                        console.log(result);
+                    },
+                    error: function(error) {
+                        //toastService.error(messageService.messages.error(error));
+                        console.log(error);
+                    }
                 });
             };
 

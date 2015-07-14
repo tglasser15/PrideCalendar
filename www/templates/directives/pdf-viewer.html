@@ -20,7 +20,7 @@
                             {{calendar.month}}
                         </div>
                         <div ng-if="i != 0" class="col pdf blank"></div>
-                        <div ng-style="calendar[i][j].color" class="col pdf" ng-repeat="j in [0,1,2,3,4] track by $index" ng-click="dayEvent(calendar[i][j])">
+                        <div ng-style="{background: calendar[i][j].color, color: calendar[i][j].textColor}" class="col pdf" ng-repeat="j in [0,1,2,3,4] track by $index" ng-click="dayEvent(calendar[i][j])">
                             {{calendar[i][j].day}}
                         </div>
                     </div>
@@ -29,9 +29,6 @@
                     <div class="row">
                         <div class="col info1">
                             <p class='info' ng-repeat="event in calendar.events.slice(0,5)">{{event.day + event.info}}</p>
-                        </div>
-                        <div class="col info1">
-                            <p class='info' ng-repeat="event in calendar.events.slice(5, calendar.events.length)">{{event.day + event.info}}</p>
                         </div>
                     </div>
 
@@ -42,7 +39,7 @@
         <div id="editor"></div>
     </div>
     <div class="popup-buttons">
-        <button class="button button-positive" ng-click="getImage()">Get Image</button>
+        <button class="button button-positive" ng-click="getImage()">Download PDF and Send To Email</button>
         <button class="button button-light" ng-click="closeModal()">Exit</button>
     </div>
 </div>

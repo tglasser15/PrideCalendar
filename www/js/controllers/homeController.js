@@ -34,6 +34,7 @@ calendar.controller('homeController',
         };
 
         $scope.viewPdf = function(index) {
+            $scope.init();
             var obj = {
                 calendarInfo: $scope.calendars[index].get("calendarInfo"),
                 calendarYear: $scope.calendars[index].get("calendarYear"),
