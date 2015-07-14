@@ -35,15 +35,16 @@ calendar.controller('homeController',
 
         $scope.viewPdf = function(index) {
             $scope.init();
-            var obj = {
-                calendarInfo: $scope.calendars[index].get("calendarInfo"),
-                calendarYear: $scope.calendars[index].get("calendarYear"),
-                title: $scope.calendars[index].get("title")
-            };
+            //var obj = {
+            //    id: $scope.calendars[index].id,
+            //    calendarInfo: $scope.calendars[index].get("calendarInfo"),
+            //    calendarYear: $scope.calendars[index].get("calendarYear"),
+            //    title: $scope.calendars[index].get("title")
+            //};
 
             viewService.openModal('pdfViewer');
             $timeout(function() {
-                $rootScope.$broadcast(messageService.messages.viewPdf, obj)
+                $rootScope.$broadcast(messageService.messages.viewPdf, $scope.calendars[index]);
             });
         };
 

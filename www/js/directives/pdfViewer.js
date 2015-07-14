@@ -51,8 +51,20 @@ calendar.directive('pdfViewer', function ($rootScope, $location, $timeout, viewS
 
             var sendEmail = function() {
 
+                var datauri = pdf.output('dataurlstring');
+                console.log(datauri);
+                // look in string and remove forbidden characters
+                //var parseFile = new Parse.File('title.pdf', {base64: datauri});
+                //console.log(parseFile);
+                //
+                //$scope.current.set("parseFile", parseFile);
+                //$scope.current.save().then(function(calendar) {
+                //    console.log(calendar);
+                //}, function(error) {
+                //    console.log(error);
+                //});
 
-                Parse.Cloud.run('sendEmail', { pdf: 'hello'}, {
+                Parse.Cloud.run('sendEmail', { pdf: datauri, title: $scope.title}, {
                     success: function(result) {
                         console.log(result);
                     },
@@ -87,8 +99,10 @@ calendar.directive('pdfViewer', function ($rootScope, $location, $timeout, viewS
             };
 
             $scope.$on(messageService.messages.viewPdf, function(event, data) {
-                $scope.calendars = data.calendarInfo;
-                $scope.title = data.calendarYear + ': ' + data.title;
+                $scope.current = data;
+                //console.log($scope.current);
+                $scope.calendars = data.get("calendarInfo");
+                $scope.title = data.get("calendarYear") + ': ' + data.get("title");
                 var i = 0;
                 _.each($scope.calendars, function(calendar) {
                     $scope.getEvents(calendar);

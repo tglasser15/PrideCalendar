@@ -3,15 +3,22 @@
 // For example:
 Parse.Cloud.define("sendEmail", function(request, response) {
 
+    console.log(request);
     var pdf = request.params.pdf;
-    var sendgrid = require("sendgrid");
-    sendgrid.initialize('tglasser15', 'S4mlnNPIRqiMVi9A6PJO1Q');
-    var email = new sendgrid.Email();
+    var title = request.params.title;
 
-    email.addTo("parent@mailinator.com");
-    email.setFrom("tommy@test.org");
-    email.setSubject("Sending with SendGrid is Fun");
-    email.setHtml("and easy to do anywhere, even with Node.js " + pdf);
+    var sendgrid = require("sendgrid");
+    sendgrid.initialize('tglasser15', '1429665-t');
+
+    var email = sendgrid.Email({to: 'parent@mailinator.com'});
+    email.setFrom('no-reply@prideprepschool.org');
+    email.setFromName('Premier Stats');
+    email.setSubject('Welcome to Premier Stats!');
+    email.setHTML('hello');
+    email.addFile({
+        filename: 'title.pdf',
+        content:  pdf
+    });
 
     sendgrid.send(email).then(function(email) {
         response.success('worked');
