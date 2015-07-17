@@ -54,25 +54,25 @@ calendar.directive('pdfViewer', function ($rootScope, $location, $timeout, viewS
                 var datauri = pdf.output('dataurlstring').split(',');
                 console.log(datauri);
 
-                var parseFile = new Parse.File('title', {base64: datauri[1]});
-                console.log(parseFile);
-
-                $scope.current.set("parseFile", parseFile);
-                $scope.current.save().then(function(calendar) {
-                    console.log(calendar);
-                }, function(error) {
-                    console.log(error);
-                });
-
-                //Parse.Cloud.run('sendEmail', { pdf: datauri, title: $scope.title}, {
-                //    success: function(result) {
-                //        console.log(result);
-                //    },
-                //    error: function(error) {
-                //        //toastService.error(messageService.messages.error(error));
-                //        console.log(error);
-                //    }
+                //var parseFile = new Parse.File('title', {base64: datauri[1]});
+                //console.log(parseFile);
+                //
+                //$scope.current.set("parseFile", parseFile);
+                //$scope.current.save().then(function(calendar) {
+                //    console.log(calendar);
+                //}, function(error) {
+                //    console.log(error);
                 //});
+
+                Parse.Cloud.run('sendEmail', { pdf: datauri[1], title: $scope.title}, {
+                    success: function(result) {
+                        console.log(result);
+                    },
+                    error: function(error) {
+                        //toastService.error(messageService.messages.error(error));
+                        console.log(error);
+                    }
+                });
             };
 
             $scope.getEvents = function(calendar) {
