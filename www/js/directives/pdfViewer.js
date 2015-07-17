@@ -16,7 +16,7 @@ calendar.directive('pdfViewer', function ($rootScope, $location, $timeout, viewS
 
                 if (i == 13) {
                     //console.log(pdf);
-                    pdf.save($scope.title);
+                    //pdf.save($scope.title);
                     sendEmail();
                 } else {
                     $('#' + (i - 1)).remove();
@@ -51,28 +51,28 @@ calendar.directive('pdfViewer', function ($rootScope, $location, $timeout, viewS
 
             var sendEmail = function() {
 
-                var datauri = pdf.output('dataurlstring');
+                var datauri = pdf.output('dataurlstring').split(',');
                 console.log(datauri);
-                // look in string and remove forbidden characters
-                //var parseFile = new Parse.File('title.pdf', {base64: datauri});
-                //console.log(parseFile);
-                //
-                //$scope.current.set("parseFile", parseFile);
-                //$scope.current.save().then(function(calendar) {
-                //    console.log(calendar);
-                //}, function(error) {
-                //    console.log(error);
-                //});
 
-                Parse.Cloud.run('sendEmail', { pdf: datauri, title: $scope.title}, {
-                    success: function(result) {
-                        console.log(result);
-                    },
-                    error: function(error) {
-                        //toastService.error(messageService.messages.error(error));
-                        console.log(error);
-                    }
+                var parseFile = new Parse.File('title', {base64: datauri[1]});
+                console.log(parseFile);
+
+                $scope.current.set("parseFile", parseFile);
+                $scope.current.save().then(function(calendar) {
+                    console.log(calendar);
+                }, function(error) {
+                    console.log(error);
                 });
+
+                //Parse.Cloud.run('sendEmail', { pdf: datauri, title: $scope.title}, {
+                //    success: function(result) {
+                //        console.log(result);
+                //    },
+                //    error: function(error) {
+                //        //toastService.error(messageService.messages.error(error));
+                //        console.log(error);
+                //    }
+                //});
             };
 
             $scope.getEvents = function(calendar) {
