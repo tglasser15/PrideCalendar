@@ -52,10 +52,15 @@
     height: 135px;
 }
 
-.col.special.two, .col.special.three, .col.info1 {
+.col.special.two, .col.info1 {
     height: 150px;
     border: none;
     padding-top: 8px;
+}
+
+.col.special.three {
+    height: 150px;
+    border: none;
 }
 
 .col.info2 {
@@ -216,6 +221,35 @@ input.ng-invalid-required.ng-touched {
 
 #canvas {
     background-color: #ffffff;
+}
+
+.brown {
+    border: 1px solid #ddd;
+    background-color: #DB9356;
+}
+
+.blue {
+    border: 1px solid #ddd;
+    background-color: #3232FF;
+}
+
+.yellow {
+    border: 1px solid #ddd;
+    background-color: #ffff00;
+}
+
+.green {
+    border: 1px solid #ddd;
+    background-color: #b4c17b;
+}
+
+.orange {
+    border: 1px solid #ddd;
+    background-color: #ffa500;
+}
+
+.red {
+    color: #ff0000;
 }
 
 

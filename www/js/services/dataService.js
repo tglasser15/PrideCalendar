@@ -23,17 +23,13 @@ calendar.factory('dataService', function ($location, $timeout, $rootScope, messa
 
         , colors = {
                 White: '#fff',
-                Lichen: '#d9bb27',
-                Celery: '#b4c17b',
-                Sage: '#9c9c3a',
-                "Robin's Egg": '#7bced2',
-                Abalone: '#79a361',
+                Green: '#b4c17b',
+                Brown: '#DB9356',
+                Blue: '#3232FF',
                 Aqua: '#00ffff',
-                Moss: '#9ba765',
                 Yellow: '#ffff00',
-                Corn: '#FBEC5D'
+                Orange: '#ffa500'
         }
-
         , months = {
             January: 0,
             February: 1,

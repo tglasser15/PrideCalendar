@@ -51,27 +51,23 @@ calendar.directive('pdfViewer', function ($rootScope, $location, $timeout, viewS
 
             var sendEmail = function() {
 
-                var datauri = pdf.output('dataurlstring').split(',');
+                var datauri = pdf.output('dataurlstring');
                 console.log(datauri);
+                console.log(datauri.length);
 
-                //var parseFile = new Parse.File('title', {base64: datauri[1]});
-                //console.log(parseFile);
-                //
-                //$scope.current.set("parseFile", parseFile);
-                //$scope.current.save().then(function(calendar) {
-                //    console.log(calendar);
-                //}, function(error) {
-                //    console.log(error);
-                //});
+                var parseFile = new Parse.File('title.pdf', {base64: datauri});
 
-                Parse.Cloud.run('sendEmail', { pdf: datauri[1], title: $scope.title}, {
-                    success: function(result) {
-                        console.log(result);
-                    },
-                    error: function(error) {
-                        //toastService.error(messageService.messages.error(error));
-                        console.log(error);
-                    }
+                parseFile.save().then(function(parseFile) {
+                    console.log(parseFile);
+                    Parse.Cloud.run('sendEmail', { pdf: parseFile, title: $scope.title}, {
+                        success: function(result) {
+                            console.log(result);
+                        },
+                        error: function(error) {
+                            //toastService.error(messageService.messages.error(error));
+                            console.log(error);
+                        }
+                    });
                 });
             };
 
@@ -101,6 +97,7 @@ calendar.directive('pdfViewer', function ($rootScope, $location, $timeout, viewS
             $scope.$on(messageService.messages.viewPdf, function(event, data) {
                 $scope.current = data;
                 //console.log($scope.current);
+                $scope.type = data.get("calType");
                 $scope.calendars = data.get("calendarInfo");
                 $scope.title = data.get("calendarYear") + ': ' + data.get("title");
                 var i = 0;

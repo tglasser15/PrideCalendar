@@ -10,15 +10,24 @@ Parse.Cloud.define("sendEmail", function(request, response) {
     var sendgrid = require("sendgrid");
     sendgrid.initialize('tglasser15', '1429665-t');
 
-    var email = sendgrid.Email({to: 'parent@mailinator.com'});
-    email.setFrom('no-reply@prideprepschool.org');
-    email.setFromName('Premier Stats');
-    email.setSubject('Welcome to Premier Stats!');
-    email.setHTML('hello');
-    email.addFile({
-        filename: 'title.pdf',
-        content:  pdf
+    var email = sendgrid.Email({
+        to: 'tommy@prideprepschool.org',
+        from: 'no-reply@prideprepschool.org',
+        subject: 'Report',
+        files: [{filename: 'Report.pdf', content: pdf}],
+        html: 'bla bla'
     });
+
+    //var email = sendgrid.Email({to: 'parent@mailinator.com'});
+    //email.setFrom('no-reply@prideprepschool.org');
+    //email.setFromName('Premier Stats');
+    //email.setSubject('Welcome to Premier Stats!');
+    //email.setHTML('hello' + pdf.name);
+
+    //email.addFile({
+    //    filename: 'title.pdf',
+    //    content:  pdf
+    //});
 
     sendgrid.send(email).then(function(email) {
         response.success('worked');

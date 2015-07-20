@@ -31,9 +31,31 @@
                             <p class='info' ng-repeat="event in calendar.events.slice(0,5)">{{event.day + event.info}}</p>
                         </div>
                     </div>
-
                 </div>
-
+                <div ng-if="$index == 0" class="col special three">
+                    <div class="row">
+                        <div class="col info1">
+                            <p class='info'>
+                                <label class="info red">Red</label> = First and Last Day of School
+                            </p>
+                            <p class='info'>
+                                <label class="info brown">Brown</label> = No School
+                            </p>
+                            <p ng-if="type === 'staff'" class='info'>
+                                <label class="info blue">Blue</label> = Intersession A
+                            </p>
+                            <p ng-if="type === 'staff'" class='info'>
+                                <label class="info yellow">Yellow</label> = Intersession B
+                            </p>
+                            <p ng-if="type === 'staff'" class='info'>
+                                <label class="info green">Green></label> = All Intersession
+                            </p>
+                            <p class='info'>
+                                <label class="info orange">Orange</label> = Student Retreat
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="editor"></div>

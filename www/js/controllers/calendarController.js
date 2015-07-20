@@ -11,6 +11,7 @@ calendar.controller('calendarController',
 
 
         $scope.$on(messageService.messages.createCalendar, function(event, data) {
+            //$scope.type = data.calType;
             $scope.calendarId = '';
             $scope.title = data.title;
             $scope.schoolStartYear = data.startYear;

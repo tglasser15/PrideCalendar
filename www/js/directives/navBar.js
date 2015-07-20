@@ -16,6 +16,7 @@ calendar.directive('navBar', function ($location, $timeout, $rootScope, viewServ
                     msg: '',
                     status: false
                 };
+                $scope.type = ["staff", "student"];
 
                 var myPopup = $ionicPopup.show({
                     template: '<div class="list">' +
@@ -28,6 +29,20 @@ calendar.directive('navBar', function ($location, $timeout, $rootScope, viewServ
                         '<input type="text" placeholder="2015" ng-bind="checkYear(data.startYear, error)" ng-model="data.startYear" required>' +
                     '</label>' +
                     '<h3 class="errorMsg" ng-if="error.status">{{error.msg}}</h3>' +
+                    '<label class="item item-radio">' +
+                        '<input ng-model="data.calType" ng-value="type[0]" type="radio" name="group" required>' +
+                        '<div class="item-content">'+
+                            'Staff Calendar' +
+                        '</div>' +
+                        '<i class="radio-icon ion-checkmark"></i>' +
+                    '</label>' +
+                    '<label class="item item-radio">' +
+                        '<input ng-model="data.calType" ng-value="type[1]" type="radio" name="group" required>' +
+                        '<div class="item-content">'+
+                            'Student Calendar' +
+                        '</div>' +
+                        '<i class="radio-icon ion-checkmark"></i>' +
+                    '</label>' +
                     '</div>',
                     title: 'Please enter title and school start year',
                     scope: $scope,
@@ -53,6 +68,7 @@ calendar.directive('navBar', function ($location, $timeout, $rootScope, viewServ
                 });
                 myPopup.then(function (res) {
                     if (!$scope.error.status && res) {
+                        console.log(res);
                         viewService.goToPage('/calendars');
                         $timeout(function () {
                             $rootScope.$broadcast(messageService.messages.createCalendar, res);
@@ -81,6 +97,10 @@ calendar.directive('navBar', function ($location, $timeout, $rootScope, viewServ
                 else
                     error.msg = '';
                 error.msg ? error.status = true : error.status = false;
+            };
+
+            $scope.checkType = function(type) {
+                console.log(type);
             };
 
             $scope.logOut = function() {
