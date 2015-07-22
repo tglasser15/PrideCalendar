@@ -8,7 +8,6 @@ Parse.Cloud.define("sendEmail", function(request, response) {
     var title = request.params.title;
 
     var sendgrid = require("sendgrid");
-    sendgrid.initialize('tglasser15', '1429665-t');
 
     var email = sendgrid.Email({
         to: 'tommy@prideprepschool.org',
